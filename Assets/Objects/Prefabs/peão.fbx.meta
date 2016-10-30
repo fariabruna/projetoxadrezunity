@@ -1,24 +1,26 @@
 fileFormatVersion: 2
-guid: 878b6aafc7d62ce40974368003d282b5
-timeCreated: 1477866724
+guid: b95673c4a12c6b44d96a2c4d115949ff
+timeCreated: 1477867270
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: default
-    100002: default_MeshPart0
-    100004: default_MeshPart1
+    100000: Camera
+    100002: Cylinder
+    100004: Cylinder.001
     100006: //RootNode
-    400000: default
-    400002: default_MeshPart0
-    400004: default_MeshPart1
+    100008: Point
+    400000: Camera
+    400002: Cylinder
+    400004: Cylinder.001
     400006: //RootNode
-    2300000: default_MeshPart0
-    2300002: default_MeshPart1
-    3300000: default_MeshPart0
-    3300002: default_MeshPart1
-    4300000: default_MeshPart0
-    4300002: default_MeshPart1
+    400008: Point
+    2300000: Cylinder
+    2300002: Cylinder.001
+    3300000: Cylinder
+    3300002: Cylinder.001
+    4300000: Cylinder.001
+    4300002: Cylinder
   materials:
     importMaterials: 1
     materialName: 0

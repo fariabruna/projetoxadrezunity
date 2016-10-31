@@ -1,15 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using tabuleiro;
 
-public class ReferenciaPeca : MonoBehaviour {
+class ReferenciaPeca : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public Peca peca { get; set; }
 }

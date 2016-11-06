@@ -3,6 +3,14 @@ using tabuleiro;
 using xadrez;
 class Util : MonoBehaviour {
 
+    public static void instanciarRei(char coluna, int linha, Cor cor, PartidaDeXadrez partida, GameObject prefab){
+        Vector3 pos = posicaoNaCena(coluna, linha);
+        GameObject rei = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
+        Peca peca = new Rei(partida.tab, cor, partida, rei);
+        partida.colocarNovaPeca(coluna, linha, peca);
+        rei.GetComponent<ReferenciaPeca>().peca = peca;
+    }
+
     public static void instanciarTorre (char coluna, int linha, Cor cor, PartidaDeXadrez partida, GameObject prefab){
         Vector3 pos = posicaoNaCena(coluna, linha);
         GameObject torre = Instantiate(prefab, pos, Quaternion.identity) as GameObject;

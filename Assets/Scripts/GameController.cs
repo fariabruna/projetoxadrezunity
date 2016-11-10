@@ -54,6 +54,8 @@ class GameController : MonoBehaviour {
                     txtMsg.text = "Solte a peça na casa de destino";
                 }
                 catch(TabuleiroException e){
+                    peca.transform.position = Util.posicaoNaCena(origem.coluna, origem.linha);
+                    estado = Estado.AguardandoJogada;
                     informarAviso(e.Message);
                 }
             }

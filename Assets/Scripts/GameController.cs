@@ -78,6 +78,8 @@ class GameController : MonoBehaviour {
                         }
                         peca.transform.position = Util.posicaoNaCena(coluna, linha);
 
+                        tratarJogadasEspeciais();
+
                         pecaEscolhida = null;
 
                         if (partida.terminada){
@@ -121,6 +123,23 @@ class GameController : MonoBehaviour {
         else {
             obj.transform.position = posDescartePretas;
             posDescartePretas.z = posDescartePretas.z - 0.5f;
+        }
+    }
+
+    void tratarJogadasEspeciais(){
+        Posicao pos = destino.toPosicao();
+        Peca pecaMovida = partida.tab.peca(pos);
+       
+        //#jogadaespecial roque pequeno
+        if(pecaMovida is Rei && destino.coluna == origem.coluna + 2){
+            GameObject torre = partida.tab.peca(pos.linha, pos.coluna - 1).obj;
+            torre.transform.position = Util.posicaoNaCena('f', origem.linha);
+        }
+
+        //#jogadaespecial roque pequeno
+        if (pecaMovida is Rei && destino.coluna == origem.coluna - 2){
+            GameObject torre = partida.tab.peca(pos.linha, pos.coluna + 1).obj;
+            torre.transform.position = Util.posicaoNaCena('d', origem.linha);
         }
     }
 }

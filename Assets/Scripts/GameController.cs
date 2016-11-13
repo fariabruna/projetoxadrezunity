@@ -34,11 +34,9 @@ class GameController : MonoBehaviour {
         Util.instanciarTorre('a', 1, Cor.Branca, partida, TorreBranca);
         Util.instanciarTorre('h', 1, Cor.Branca, partida, TorreBranca);
         Util.instanciarRei('e', 1, Cor.Branca, partida, reiBranco);
-
         Util.instanciarTorre('h', 8, Cor.Preta, partida, TorrePreta);
         Util.instanciarTorre('a', 8, Cor.Preta, partida, TorrePreta);
         Util.instanciarRei('e', 8, Cor.Preta, partida, reiPreto);
-
     }
 
     public void processarMouseDown(GameObject peca, GameObject casa){
@@ -77,8 +75,17 @@ class GameController : MonoBehaviour {
                         peca.transform.position = Util.posicaoNaCena(coluna, linha);
 
                         pecaEscolhida = null;
-                        estado = Estado.AguardandoJogada;
-                        informarAguardando();
+
+                        if (partida.terminada){
+                            estado = Estado.GameOver;
+                            txtMsg.text = "Vencedor: " + partida.jogadorAtual;
+                            txtXeque.text = "XEQUEMATE";
+                        }
+                        else {
+                            estado = Estado.AguardandoJogada;
+                            informarAguardando();
+                            txtXeque.text = (partida.xeque) ? "XEQUE" : "";
+                        }
                     }
                     catch (TabuleiroException e){
                         peca.transform.position = Util.posicaoNaCena(origem.coluna, origem.linha);

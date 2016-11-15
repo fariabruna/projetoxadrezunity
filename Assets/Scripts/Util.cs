@@ -11,12 +11,29 @@ class Util : MonoBehaviour {
         rei.GetComponent<ReferenciaPeca>().peca = peca;
     }
 
+    public static void instanciarDama(char coluna, int linha, Cor cor, PartidaDeXadrez partida, GameObject prefab)
+    {
+        Vector3 pos = posicaoNaCena(coluna, linha);
+        GameObject dama = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
+        Peca peca = new Dama(partida.tab, cor, dama);
+        partida.colocarNovaPeca(coluna, linha, peca);
+        dama.GetComponent<ReferenciaPeca>().peca = peca;
+    }
+
     public static void instanciarTorre(char coluna, int linha, Cor cor, PartidaDeXadrez partida, GameObject prefab){
         Vector3 pos = posicaoNaCena(coluna, linha);
         GameObject torre = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
         Peca peca = new Torre(partida.tab, cor, torre);
         partida.colocarNovaPeca(coluna, linha, peca);
         torre.GetComponent<ReferenciaPeca>().peca = peca;
+    }
+
+    public static void instanciarPeao(char coluna, int linha, Cor cor, PartidaDeXadrez partida, GameObject prefab){
+        Vector3 pos = posicaoNaCena(coluna, linha);
+        GameObject peao = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
+        Peca peca = new Peao(partida.tab, cor, partida, peao);
+        partida.colocarNovaPeca(coluna, linha, peca);
+        peao.GetComponent<ReferenciaPeca>().peca = peca;
     }
 
     public static Vector3 posicaoNaCena(char coluna, int linha){

@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 class GameController : MonoBehaviour {
 
-    public GameObject TorreBranca = null;
+    public GameObject torreBranca = null;
     public GameObject reiBranco = null;
+    public GameObject damaBranca = null;
+    public GameObject peaoBranco = null;
 
-    public GameObject TorrePreta = null;
+    public GameObject torrePreta = null;
     public GameObject reiPreto = null;
+    public GameObject damaPreta = null;
+    public GameObject peaoPreto = null;
 
     public Text txtMsg = null;
     public Text txtXeque = null;
@@ -34,12 +38,31 @@ class GameController : MonoBehaviour {
         txtXeque.text = "";
         informarAguardando();
 
-        Util.instanciarTorre('a', 1, Cor.Branca, partida, TorreBranca);
-        Util.instanciarTorre('h', 1, Cor.Branca, partida, TorreBranca);
+        Util.instanciarTorre('a', 1, Cor.Branca, partida, torreBranca);
+        Util.instanciarDama('d', 1, Cor.Branca, partida, damaBranca);
         Util.instanciarRei('e', 1, Cor.Branca, partida, reiBranco);
-        Util.instanciarTorre('h', 8, Cor.Preta, partida, TorrePreta);
-        Util.instanciarTorre('a', 8, Cor.Preta, partida, TorrePreta);
+        Util.instanciarTorre('h', 1, Cor.Branca, partida, torreBranca);
+        Util.instanciarPeao('a', 2, Cor.Branca, partida, peaoBranco);
+        Util.instanciarPeao('b', 2, Cor.Branca, partida, peaoBranco);
+        Util.instanciarPeao('c', 2, Cor.Branca, partida, peaoBranco);
+        Util.instanciarPeao('d', 2, Cor.Branca, partida, peaoBranco);
+        Util.instanciarPeao('e', 2, Cor.Branca, partida, peaoBranco);
+        Util.instanciarPeao('f', 2, Cor.Branca, partida, peaoBranco);
+        Util.instanciarPeao('g', 2, Cor.Branca, partida, peaoBranco);
+        Util.instanciarPeao('h', 2, Cor.Branca, partida, peaoBranco);
+
+        Util.instanciarTorre('a', 8, Cor.Preta, partida, torrePreta);
+        Util.instanciarDama('d', 8, Cor.Preta, partida, damaPreta);
         Util.instanciarRei('e', 8, Cor.Preta, partida, reiPreto);
+        Util.instanciarTorre('h', 8, Cor.Preta, partida, torrePreta);
+        Util.instanciarPeao('a', 7, Cor.Preta, partida, peaoPreto);
+        Util.instanciarPeao('b', 7, Cor.Preta, partida, peaoPreto);
+        Util.instanciarPeao('c', 7, Cor.Preta, partida, peaoPreto);
+        Util.instanciarPeao('d', 7, Cor.Preta, partida, peaoPreto);
+        Util.instanciarPeao('e', 7, Cor.Preta, partida, peaoPreto);
+        Util.instanciarPeao('f', 7, Cor.Preta, partida, peaoPreto);
+        Util.instanciarPeao('g', 7, Cor.Preta, partida, peaoPreto);
+        Util.instanciarPeao('h', 7, Cor.Preta, partida, peaoPreto);
     }
 
     public void processarMouseDown(GameObject peca, GameObject casa){
@@ -140,6 +163,15 @@ class GameController : MonoBehaviour {
         if (pecaMovida is Rei && destino.coluna == origem.coluna - 2){
             GameObject torre = partida.tab.peca(pos.linha, pos.coluna + 1).obj;
             torre.transform.position = Util.posicaoNaCena('d', origem.linha);
+        }
+
+        //#jogadaespecial promoçao
+        if (partida.promovida != null){
+            removerObjetoCapturado(partida.promovida);
+            Vector3 posPromovida = Util.posicaoNaCena(destino.coluna, destino.linha);
+            GameObject prefab = (pecaMovida.cor == Cor.Branca) ? damaBranca : damaPreta;
+            GameObject dama = Instantiate(prefab, posPromovida, Quaternion.identity) as GameObject;
+            pecaMovida.obj = dama;
         }
     }
 }

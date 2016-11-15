@@ -32,8 +32,8 @@ class GameController : MonoBehaviour {
         estado = Estado.AguardandoJogada;
         pecaEscolhida = null;
         corOriginal = txtMsg.color;
-        posDescarteBrancas = new Vector3(-4f, 0f, -2.5f);
-        posDescartePretas = new Vector3(4f, 0f, 2.5f);
+        posDescarteBrancas = new Vector3(-4f, 0.5f, -2.5f);
+        posDescartePretas = new Vector3(4f, 0.5f, 2.5f);
         partida = new PartidaDeXadrez();
         txtXeque.text = "";
         informarAguardando();

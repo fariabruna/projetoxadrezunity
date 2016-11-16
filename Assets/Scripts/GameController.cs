@@ -8,11 +8,15 @@ class GameController : MonoBehaviour {
     public GameObject torreBranca = null;
     public GameObject reiBranco = null;
     public GameObject damaBranca = null;
+    public GameObject cavaloBranco = null;
+    public GameObject bispoBranco = null;
     public GameObject peaoBranco = null;
 
     public GameObject torrePreta = null;
     public GameObject reiPreto = null;
     public GameObject damaPreta = null;
+    public GameObject cavaloPreto = null;
+    public GameObject bispoPreto = null;
     public GameObject peaoPreto = null;
 
     public Text txtMsg = null;
@@ -39,8 +43,12 @@ class GameController : MonoBehaviour {
         informarAguardando();
 
         Util.instanciarTorre('a', 1, Cor.Branca, partida, torreBranca);
+        Util.instanciarCavalo('b', 1, Cor.Branca, partida, cavaloBranco);
+        Util.instanciarBispo('c', 1, Cor.Branca, partida, bispoBranco);
         Util.instanciarDama('d', 1, Cor.Branca, partida, damaBranca);
         Util.instanciarRei('e', 1, Cor.Branca, partida, reiBranco);
+        Util.instanciarBispo('f', 1, Cor.Branca, partida, bispoBranco);
+        Util.instanciarCavalo('g', 1, Cor.Branca, partida, cavaloBranco);
         Util.instanciarTorre('h', 1, Cor.Branca, partida, torreBranca);
         Util.instanciarPeao('a', 2, Cor.Branca, partida, peaoBranco);
         Util.instanciarPeao('b', 2, Cor.Branca, partida, peaoBranco);
@@ -52,8 +60,12 @@ class GameController : MonoBehaviour {
         Util.instanciarPeao('h', 2, Cor.Branca, partida, peaoBranco);
 
         Util.instanciarTorre('a', 8, Cor.Preta, partida, torrePreta);
+        Util.instanciarCavalo('b', 8, Cor.Preta, partida, cavaloPreto);
+        Util.instanciarBispo('c', 8, Cor.Preta, partida, bispoPreto);
         Util.instanciarDama('d', 8, Cor.Preta, partida, damaPreta);
         Util.instanciarRei('e', 8, Cor.Preta, partida, reiPreto);
+        Util.instanciarBispo('f', 8, Cor.Preta, partida, bispoPreto);
+        Util.instanciarCavalo('g', 8, Cor.Preta, partida, cavaloPreto);
         Util.instanciarTorre('h', 8, Cor.Preta, partida, torrePreta);
         Util.instanciarPeao('a', 7, Cor.Preta, partida, peaoPreto);
         Util.instanciarPeao('b', 7, Cor.Preta, partida, peaoPreto);

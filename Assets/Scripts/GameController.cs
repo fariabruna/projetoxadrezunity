@@ -141,7 +141,7 @@ class GameController : MonoBehaviour {
     void informarAviso (string msg){
         txtMsg.color = Color.red;
         txtMsg.text = msg;
-        Invoke("InformarAguardando", 1f);
+        Invoke("informarAguardando", 1f);
     }
 
     void informarAguardando(){

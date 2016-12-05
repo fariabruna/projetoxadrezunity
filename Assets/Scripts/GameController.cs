@@ -129,6 +129,7 @@ class GameController : MonoBehaviour {
                         else{
                             estado = Estado.AguardandoJogada;
                             informarAguardando();
+                            Invoke("girarCamera", 0.5f);
                             txtXeque.text = (partida.xeque) ? "XEQUE" : "";
                         }
                     }
@@ -187,6 +188,14 @@ class GameController : MonoBehaviour {
             GameObject prefab = (pecaMovida.cor == Cor.Branca) ? damaBranca : damaPreta;
             GameObject dama = Instantiate(prefab, posPromovida, Quaternion.identity) as GameObject;
             pecaMovida.obj = dama;
+        }
+    }
+    void girarCamera(){
+        if(partida.jogadorAtual == Cor.Branca){
+            Camera.main.GetComponent<CameraRotacao>().irParaBranca();
+        }
+        else{
+            Camera.main.GetComponent<CameraRotacao>().irParaPreta();
         }
     }
 }

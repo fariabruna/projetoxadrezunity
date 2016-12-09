@@ -93,10 +93,12 @@ class GameController : MonoBehaviour {
                     pecaEscolhida = obj;
                     estado = Estado.Arrastando;
                     txtMsg.text = "Selecione a casa de destino";
+                    GameObject.Find("somClique").GetComponent<AudioSource>().Play();
                     instanciarParticulas();
                 }
                 catch(TabuleiroException e){
                     informarAviso(e.Message);
+                    GameObject.Find("somErro").GetComponent<AudioSource>().Play();
                 }
             }
         }
@@ -117,10 +119,14 @@ class GameController : MonoBehaviour {
 
                         partida.validarPosicaoDeDestino(origem.toPosicao(), destino.toPosicao());
                         Peca pecaCapturada = partida.realizaJogada(origem.toPosicao(), destino.toPosicao());
-
+                    
                         if (pecaCapturada != null){
                             removerObjetoCapturado(pecaCapturada);
+                            GameObject.Find("somCaptura").GetComponent<AudioSource>().Play();
                         }
+                        else{
+                            GameObject.Find("somClique").GetComponent<AudioSource>().Play();
+                    }
                         pecaEscolhida.transform.position = Util.posicaoNaCena(coluna, linha);
 
                         tratarJogadasEspeciais();
@@ -143,7 +149,8 @@ class GameController : MonoBehaviour {
                         pecaEscolhida.transform.position = Util.posicaoNaCena(origem.coluna, origem.linha);
                         estado = Estado.AguardandoJogada;
                         informarAviso(e.Message);
-                    }
+                        GameObject.Find("somErro").GetComponent<AudioSource>().Play();
+                }
                     finally{
                     destruirParticulas();
                 }
